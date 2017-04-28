@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/9/modelMap"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/9/modelMap http://cayenne.apache.org/schema/9/modelMap.xsd"
+	 project-version="9">
+	<property name="defaultPackage" value="com.foo.cayenne"/>
+	<db-entity name="game" catalog="schedule">
+		<db-attribute name="arena" type="VARCHAR" isMandatory="true" length="45"/>
+		<db-attribute name="date_time" type="TIMESTAMP" isMandatory="true" length="19"/>
+		<db-attribute name="home_team_id" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="visiting_team_id" type="INTEGER" isMandatory="true" length="10"/>
+	</db-entity>
+	<db-entity name="team" catalog="schedule">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="45"/>
+	</db-entity>
+	<obj-entity name="Game" className="com.foo.cayenne.Game" dbEntityName="game">
+		<obj-attribute name="arena" type="java.lang.String" db-attribute-path="arena"/>
+		<obj-attribute name="dateTime" type="java.time.LocalDateTime" db-attribute-path="date_time"/>
+	</obj-entity>
+	<obj-entity name="Team" className="com.foo.cayenne.Team" dbEntityName="team">
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<db-relationship name="homeTeam" source="game" target="team" toMany="false">
+		<db-attribute-pair source="home_team_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="visitingTeam" source="game" target="team" toMany="false">
+		<db-attribute-pair source="visiting_team_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="games" source="team" target="game" toMany="true">
+		<db-attribute-pair source="id" target="visiting_team_id"/>
+	</db-relationship>
+	<db-relationship name="games1" source="team" target="game" toMany="true">
+		<db-attribute-pair source="id" target="home_team_id"/>
+	</db-relationship>
+	<obj-relationship name="homeTeam" source="Game" target="Team" deleteRule="Nullify" db-relationship-path="homeTeam"/>
+	<obj-relationship name="visitingTeam" source="Game" target="Team" deleteRule="Nullify" db-relationship-path="visitingTeam"/>
+	<obj-relationship name="games" source="Team" target="Game" deleteRule="Deny" db-relationship-path="games"/>
+	<obj-relationship name="games1" source="Team" target="Game" deleteRule="Deny" db-relationship-path="games1"/>
+</data-map>

@@ -1,0 +1,6 @@
+jdbc:
+  schedule:
+    url: "jdbc:mysql://127.0.0.1:3306/schedule?connectTimeout=0&autoReconnect=true"
+    initialSize: 1
+    username: root
+    # password: root

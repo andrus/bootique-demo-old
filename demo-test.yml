@@ -1,0 +1,5 @@
+jdbc:
+  schedule:
+    url: "jdbc:derby:target/testdb;create=true"
+    initialSize: 1
+    username: sa
