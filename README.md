@@ -46,5 +46,9 @@ be interesting.
 ## Other Fun Things to Check
 
 * Take a look inside `HelloApiIT.java` to see how integration tests can be implemented for a web service.
-* Run the app with `-H` flag to see the included modules and available configuration: `java -jar target/bootique-demo-1.0-SNAPSHOT.jar -H`.
+* Run the app with `-H` flag to see the included modules and available configuration: 
+
+```
+java -jar target/bootique-demo-1.0-SNAPSHOT.jar -H
+```
 
