@@ -30,8 +30,8 @@ Now run the app...
 # This prints help
 java -jar target/bootique-demo-1.0-SNAPSHOT.jar 
 
-# As the help suggests, export MySQL password as a shell var (we could have placed it in the YAML, but this would be a 
-# bad practice).
+# As the help suggests, export MySQL password as a shell var (we could have placed it in the YAML, 
+# but this would be a bad practice).
 export DB_PASSWORD=root
 
 # This actually starts the server with a proper config
