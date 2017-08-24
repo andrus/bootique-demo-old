@@ -2,9 +2,9 @@ package com.foo;
 
 import com.foo.cayenne.Game;
 import com.foo.cayenne.Team;
+import io.bootique.BQRuntime;
 import io.bootique.cayenne.test.CayenneTestDataManager;
 import io.bootique.jetty.test.junit.JettyTestFactory;
-import io.bootique.test.BQTestRuntime;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,7 +23,7 @@ public class HelloApiIT {
     @Before
     public void before() {
 
-        BQTestRuntime runtime = testFactory.app("-c", "demo-test.yml")
+        BQRuntime runtime = testFactory.app("-c", "demo-test.yml")
                 .autoLoadModules()
                 .start();
 
